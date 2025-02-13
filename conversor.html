@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #00eeff;
+            margin: 0;
+        }
+
+        .converter-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="converter-container">
+        <h1>Conversores</h1>
+
+        
+        <div>
+            <label for="temperature">Escolha a conversão de Temperatura:</label>
+            <select id="temperature">
+                <option value="celsiusToFahrenheit">Celsius para Fahrenheit</option>
+                <option value="fahrenheitToCelsius">Fahrenheit para Celsius</option>
+            </select>
+            <label for="tempInput">Digite a temperatura:</label>
+            <input type="number" id="tempInput" placeholder="Digite a temperatura">
+            <button onclick="convertTemperature()">Converter</button>
+            <div class="result" id="tempResult"></div>
+        </div>
+
+        <hr>
+
+        
+        <div>
+            <label for="length">Escolha a conversão de Distância:</label>
+            <select id="length">
+                <option value="metersToKilometers">Metros para Quilômetros</option>
+                <option value="kilometersToMeters">Quilômetros para Metros</option>
+            </select>
+            <label for="lengthInput">Digite o valor:</label>
+            <input type="number" id="lengthInput" placeholder="Digite o valor">
+            <button onclick="convertLength()">Converter</button>
+            <div class="result" id="lengthResult"></div>
+        </div>
+    </div>
+
+    <script>
+       
+        function convertTemperature() {
+            const temperatureValue = parseFloat(document.getElementById('tempInput').value);
+            const conversionType = document.getElementById('temperature').value;
+            let result;
+
+            if (isNaN(temperatureValue)) {
+                alert('Por favor, insira um valor válido para temperatura.');
+                return;
+            }
+
+            if (conversionType === 'celsiusToFahrenheit') {
+                result = (temperatureValue * 9/5) + 32; 
+                document.getElementById('tempResult').innerHTML = ${temperatureValue}°C é igual a ${result.toFixed(2)}°F;
+            } else {
+                result = (temperatureValue - 32) * 5/9; 
+                document.getElementById('tempResult').innerHTML = ${temperatureValue}°F é igual a ${result.toFixed(2)}°C;
+            }
+        }
+
+        
+        function convertLength() {
+            const lengthValue = parseFloat(document.getElementById('lengthInput').value);
+            const conversionType = document.getElementById('length').value;
+            let result;
+
+            if (isNaN(lengthValue)) {
+                alert('Por favor, insira um valor válido para distância.');
+                return;
+            }
+
+            if (conversionType === 'metersToKilometers') {
+                result = lengthValue / 1000; 
+                document.getElementById('lengthResult').innerHTML =${lengthValue} metros é igual a ${result.toFixed(3)} km;
+            } else {
+                result = lengthValue * 1000; 
+                document.getElementById('lengthResult').innerHTML = ${lengthValue} km é igual a ${result.toFixed(0)} metros;
+            }
+        }
+    </script>
+
+</body>
+</html>
